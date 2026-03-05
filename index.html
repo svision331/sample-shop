@@ -3386,6 +3386,58 @@
       dateInput.value = today;
       dateInput.min = today;
     }
+
+    // Dynamic Services based on Barber
+    const svcSelect = document.getElementById('svc-select');
+    const barberSelect = document.getElementById('barber-select');
+
+    // Store original services to revert back.
+    const defaultServices = `
+      <option>Classic Cut — $40</option>
+      <option>Precision Fade — $45</option>
+      <option>Full Braiding — $75+</option>
+      <option>Natural Hair Care — $50</option>
+      <option>Lineup & Beard — $35</option>
+    `;
+
+    const braidedByLawServices = `
+      <option>2 Stitch Braids — $50</option>
+      <option>4 Stitch Braids — $50</option>
+      <option>6 Stitch Braids — $75</option>
+      <option>Braids In The Front Only — $50+</option>
+      <option>8 Stitch Braids — $100</option>
+      <option>Iverson Braids — $150</option>
+      <option>Kids Styles — $160</option>
+      <option>Starter Locs — $180</option>
+      <option>Stitch Braid Freestyle — $200</option>
+      <option>Fulani Braids (Medium) — $300</option>
+      <option>Wash and Blow Dry — $40</option>
+      <option>Comb Coils (Shaved sides) — $65</option>
+      <option>Squeeze Me In! (Priority) — $100</option>
+    `;
+
+    const niaServices = `
+      <option>Loc Detox & Wash — $30+</option>
+      <option>Take down & detangle — $50+</option>
+      <option>Wig Install — $90+</option>
+      <option>Sew-in Maintenance — $95</option>
+      <option>Quick Weave — $130+</option>
+      <option>MiracleKnot Box Braids/Twists — $130</option>
+      <option>Sew-in (3-Bundles) — $180+</option>
+      <option>Loc Extensions — $300+</option>
+    `;
+
+    if (barberSelect && svcSelect) {
+      barberSelect.addEventListener('change', (e) => {
+        if (e.target.value.includes('Braided By Law')) {
+          svcSelect.innerHTML = braidedByLawServices;
+        } else if (e.target.value.includes('Nia')) {
+          svcSelect.innerHTML = niaServices;
+        } else {
+          svcSelect.innerHTML = defaultServices;
+        }
+      });
+    }
   </script>
 </body>
 
